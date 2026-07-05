@@ -1,0 +1,191 @@
+Cas 1 – Machine totalement CONFORME
+Tu montres une machine qui respecte toutes les tolérances, y compris la CDA.
+
+Nom de la machine
+
+Salle Radio 1 – GÉN RX 001
+
+Test 1 – Exactitude du kV
+kV affichés: 60, 70, 80, 90, 100
+kV mesurés à saisir:
+
+60 → 59
+
+70 → 71
+
+80 → 82
+
+90 → 88
+
+100 → 98
+
+(Erreurs autour de 2–3%, bien en dessous de 10%.)
+
+Test 2 – Reproductibilité du kV
+Mesures successives:
+
+79.5
+
+80.2
+
+80.0
+
+79.8
+
+80.1
+
+(Variations très faibles → bonne reproductibilité.)
+
+Test 3 – Linéarité du mAs
+mAs: 5, 10, 15, 20, 25
+Expositions:
+
+5 mAs → 10
+
+10 mAs → 20
+
+15 mAs → 30
+
+20 mAs → 40
+
+25 mAs → 50
+
+(Proportionnel → linéaire.)
+
+Test 4 – Temps d’exposition
+Temps affichés: 10, 20, 50, 100, 200 ms
+Temps mesurés:
+
+10 ms → 10.2
+
+20 ms → 19.6
+
+50 ms → 49.5
+
+100 ms → 101
+
+200 ms → 198
+
+(Erreurs < 5%, largement dans la tolérance habituelle.)
+
+Test 5 – CDA / HVL (doit être CONFORME)
+
+kV utilisé: 80
+
+Épaisseurs Al: 0, 1, 2, 3, 4
+
+Kermas à saisir:
+
+0 mm → 100
+
+1 mm → 80
+
+2 mm → 65
+
+3 mm → 45
+
+4 mm → 30
+
+Avec ton code:
+
+Kerma cible = 50% de 100 = 50.
+
+Entre 2 mm (65) et 3 mm (45), on passe de >50 à <50.
+
+Interpolation donne une CDA ≈ 2.75 mm Al, supérieure à la norme minimale 2.3 mm Al à 80 kV.
+
+Donc ton backend mettra ✅ CONFORME pour la CDA.
+
+Ce que tu dois obtenir devant ton prof
+
+Résultat global: ✅ CONFORME.
+
+Tous les tests dans les détails en “✅ CONFORME”.
+
+Vue d’ensemble:
+
+Contrôles effectués: au moins 1.
+
+Dernier verdict global: “✅ CONFORME”.
+
+Machine: “Salle Radio 1 – GÉN RX 001”.
+
+Rapports: une ligne avec cette machine, la date du jour, et “✅ CONFORME”.
+
+
+
+
+-------------------------
+Cas 2 – Machine NON CONFORME (CDA trop faible, version corrigée)
+Tu gardes les mêmes valeurs que Cas 1 pour les tests 1–4 (pour montrer que tout va bien sur le reste), et tu ne changes que le test 5.
+
+Nom de la machine
+
+Salle Radio 2 – GÉN RX 002
+
+Tests 1 à 4
+
+Tu peux reprendre exactement les valeurs du Cas 1 (toutes conformes) pour simplifier:
+
+Test 1 (Exactitude kV):
+
+60 → 59
+
+70 → 71
+
+80 → 82
+
+90 → 88
+
+100 → 98
+
+Test 2 (Reproductibilité kV):
+
+79.5, 80.2, 80.0, 79.8, 80.1
+
+Test 3 (Linéarité mAs):
+
+5 → 10
+
+10 → 20
+
+15 → 30
+
+20 → 40
+
+25 → 50
+
+Test 4 (Temps):
+
+10 → 10.2
+
+20 → 19.6
+
+50 → 49.5
+
+100 → 101
+
+200 → 198
+
+Test 5 – CDA / HVL (NON conforme)
+
+kV utilisé: 80
+
+Épaisseurs Al: 0, 1, 2, 3, 4
+
+Kermas À ENTRER pour ce cas 2:
+
+0 mm → 100
+
+1 mm → 60
+
+2 mm → 40
+
+3 mm → 28
+
+4 mm → 20
+-------------C:\Users\LENOVO>cd C:\controle-qualite-radiographie\backend
+
+C:\controle-qualite-radiographie\backend>venv\Scripts\activate
+
+(venv) C:\controle-qualite-radiographie\backend>uvicorn app.main:app --reload --port 8000
